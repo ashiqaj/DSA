@@ -1,5 +1,5 @@
 import java.util.*;
-public class Post {
+public class PostEval {
     static int evoPost(String as) {
         Stack<Integer> st=new Stack<>();
         for(int i=0;i<as.length();i++) {
