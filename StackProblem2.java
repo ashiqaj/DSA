@@ -1,7 +1,7 @@
-import java.util.*;
-class Arr {
+import java.util.Scanner;
+class Stock {
     int arr[];
-    Arr(int size) {
+    Stock(int size) {
         arr=new int[size];
     }
     int top=-1;
@@ -19,7 +19,7 @@ class Arr {
             return 0;
         }
         int x= arr[top];
-        top=top+flag;
+        top+=flag;
         return x;
     }
     void display() {
@@ -32,26 +32,34 @@ class Arr {
             }
         }
     }
+    int stockCount() {
+        int c=0;
+        for(int i=top;i>=0;i--) {
+            if(arr[i]<=arr[top]) {
+                c++;
+            }
+            else
+            break; 
+        }
+        return c;
+    }
 }
-public class StackProblem1 {
+public class StackProblem2 {
     public static void main(String[] args) {
         Scanner in=new Scanner(System.in);
+        System.out.println("Enter the number of days");
         int n=in.nextInt();
-        int id=in.nextInt();
-        int flag=-1;
-        Arr st=new Arr(n);
+        Stock st=new Stock(n);
+        int res[]=new int[n];
+        System.out.println("Enter the stock prices ");
         for(int i=0;i<n;i++) {
-            char ch=in.next().charAt(0);
-            if(ch=='F') {
-                int x=in.nextInt();
-                st.push(x);
-                flag=-1;
-            }
-            else if(ch=='R') {
-                st.pop(flag);
-                flag=1;
-            }
+            int x=in.nextInt();
+            st.push(x);
+            res[i]=st.stockCount();
         }
-        System.err.println("Player "+st.pop(flag));
+        System.out.println("Span Values ");
+        for(int i=0;i<n;i++) {
+            System.out.print(res[i]+" ");
+        }
     }
 }
